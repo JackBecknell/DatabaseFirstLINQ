@@ -96,20 +96,20 @@ namespace DatabaseFirstLINQ
 
         }
 
-        //private void ProblemSix()
-        //{
-        //    // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
-        //    DateTime d1 = new DateTime(2016, 01, 01);
-        //    DateTime d2 = new DateTime(2018, 01, 01);
-        //    var lateUsers = _context.Users.Where(u => u.RegistrationDate > d1 && u.RegistrationDate < d2);
+        private void ProblemSix()
+        {
+            // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
+            DateTime d1 = new DateTime(2016, 01, 01);
+            DateTime d2 = new DateTime(2018, 01, 01);
+            var lateUsers = _context.Users.Where(u => u.RegistrationDate > d1 && u.RegistrationDate < d2);
 
-        //    foreach (User user in lateUsers)
-        //    {
-        //        Console.WriteLine("Late Users:" + user.Email + ' ' + user.RegistrationDate);
-        //    }
-        //    // Then print each user's email and registration date to the console.
+            foreach (User user in lateUsers)
+            {
+                Console.WriteLine("Late Users:" + user.Email + ' ' + user.RegistrationDate);
+            }
+            // Then print each user's email and registration date to the console.
 
-        //}
+        }
 
 
         ///VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
