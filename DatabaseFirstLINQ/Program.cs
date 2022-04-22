@@ -8,6 +8,7 @@ namespace DatabaseFirstLINQ
         {
             //Problems problems = new Problems();
             //problems.RunLINQQueries();
+            Console.WriteLine("Heyyo!");
         }
     }
 }
