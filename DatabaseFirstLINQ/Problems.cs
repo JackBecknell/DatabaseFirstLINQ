@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using DatabaseFirstLINQ.Models;
 
@@ -34,8 +35,12 @@ namespace DatabaseFirstLINQ
             //ProblemSixteen();
             //ProblemSeventeen();
             //ProblemEighteen();
-            ProblemNineteen();
+            //ProblemNineteen();
             //ProblemTwenty();
+            //BonusOne();
+            //BonusTwo();
+            //Bonus three is unfinished.
+            BonusThree();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -142,10 +147,10 @@ namespace DatabaseFirstLINQ
             //    // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
             //    // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             //    // Then print the total of the shopping cart to the console.
-            var OdasTotal = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => u.User.Email == "oda@gmail.com").Select(u => u.Product.Price).Sum(); 
+            var OdasTotal = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => u.User.Email == "oda@gmail.com").Select(u => u.Product.Price).Sum();
 
-            Console.WriteLine("Oda is spending ${0}",OdasTotal);
-    }
+            Console.WriteLine("Oda is spending ${0}", OdasTotal);
+        }
 
         private void ProblemTen()
         {
@@ -154,7 +159,7 @@ namespace DatabaseFirstLINQ
             var employeeId = _context.Roles.Include(u => u.UserRoles).Where(u => u.RoleName == "Employee").Select(u => u.Id).First();
             var usersWithEmpId = _context.UserRoles.Include(u => u.User).Where(u => u.RoleId == employeeId).Select(u => u.User.Email);
             var empShoppingCarts = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => usersWithEmpId.Contains(u.User.Email));
-            foreach(ShoppingCart cart in empShoppingCarts)
+            foreach (ShoppingCart cart in empShoppingCarts)
             {
                 Console.WriteLine("Employee email: {0}, Product Name: {1}, Product Price: ${2}, Quantity: {3}", cart.User.Email, cart.Product.Name, cart.Product.Price, cart.Quantity);
             }
@@ -234,9 +239,9 @@ namespace DatabaseFirstLINQ
             // Update the price of the product you created to something different using LINQ.
             var product = _context.Products.Where(p => p.Name == "Game Controller").SingleOrDefault();
             product.Price = 999;
-        
-         _context.Products.Update(product);
-         _context.SaveChanges();
+
+            _context.Products.Update(product);
+            _context.SaveChanges();
         }
 
         private void ProblemSeventeen()
@@ -277,42 +282,160 @@ namespace DatabaseFirstLINQ
             _context.SaveChanges();
         }
 
-        //private void ProblemTwenty()
-        //{
-        //    // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-
-        //}
+        private void ProblemTwenty()
+        {
+            // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
+            var user = _context.Users.Where(ur => ur.Email == "oda@gmail.com").SingleOrDefault();
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
 
         //// <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
 
-        //private void BonusOne()
-        //{
-        //    // Prompt the user to enter in an email and password through the console.
-        //    // Take the email and password and check if the there is a person that matches that combination.
-        //    // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
-        //}
+        private void BonusOne()
+        {
+            // Prompt the user to enter in an email and password through the console.
+            // Take the email and password and check if the there is a person that matches that combination.
+            // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.Write("Enter User Email: ");
+            string userEmail = Console.ReadLine();
+            Console.Write("Enter User Password: ");
+            string userPassword = Console.ReadLine();
+            var user = _context.Users.Where(u => u.Email == userEmail).Where(u => u.Password == userPassword).SingleOrDefault();
+            if (user != null)
+            {
+                Console.WriteLine("Signed In!");
+            }
+            else
+            {
+                Console.WriteLine("Invalid Email or Password.");
+            }
+        }
 
-        //private void BonusTwo()
-        //{
-        //    // Write a query that finds the total of every users shopping cart products using LINQ.
-        //    // Display the total of each users shopping cart as well as the total of the toals to the console.
-        //}
+        private void BonusTwo()
+        {
+            // Write a query that finds the total of every users shopping cart products using LINQ.
+            // Display the total of each users shopping cart as well as the total of the totals to the console.
+
+            List<string> instructors = new List<string>();
+            instructors.Add("Mike");
+            instructors.Add("Nevin");
+            instructors.Add("Cash");
+            instructors.Add("JJ");
+
+
+            var users = _context.Users.ToList();
+            int userTotal = 0;
+            int finalTotal = 0;
+
+            foreach (User user in users)
+            {
+                userTotal = 0;
+                var scTotal = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => u.UserId == user.Id);
+                foreach (ShoppingCart cart in scTotal)
+                {
+                    userTotal += (int)cart.Product.Price * (int)cart.Quantity;
+                    finalTotal += (int)cart.Product.Price * (int)cart.Quantity;
+                }
+                Console.WriteLine($"Email: {user.Email} | Total: {userTotal}");
+            }
+            Console.WriteLine($"Final total: {finalTotal}");
+        }
 
         //// BIG ONE
-        //private void BonusThree()
-        //{
-        //    // 1. Create functionality for a user to sign in via the console
-        //    // 2. If the user succesfully signs in
-        //    // a. Give them a menu where they perform the following actions within the console
-        //    // View the products in their shopping cart
-        //    // View all products in the Products table
-        //    // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
-        //    // Remove a product from their shopping cart
-        //    // 3. If the user does not succesfully sing in
-        //    // a. Display "Invalid Email or Password"
-        //    // b. Re-prompt the user for credentials
+        /////afton@gmail.com
+        //AftonsPass123
+        // 1. Create functionality for a user to sign in via the console
+        // 2. If the user succesfully signs in
+        //Completed^^^
 
-        //}
 
+        // a. Give them a menu where they perform the following actions within the console
+        // View the products in their shopping cart
+        // View all products in the Products table
+        // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
+        // Remove a product from their shopping cart
+        // 3. If the user does not succesfully sing in
+        // a. Display "Invalid Email or Password"
+        // b. Re-prompt the user for credentials
+        private void BonusThree()
+        {
+            //User sign in
+            var userContinues = SignIn();
+            if (userContinues.ToList().Count() == 2)
+            {
+                Console.WriteLine("signed in");
+                //more function calls
+            }
+
+
+
+            
+                //Console.WriteLine("Hello user please choose one of the following commands to continue.\n" +
+                //    "Type '1' : To View all products in your shopping cart.\n" +
+                //    "Type '2' : To View all products available for purchase.\n" +
+                //    "Type '3' : To Exit.");
+                //string userResponse1 = Console.ReadLine();
+
+                //switch (userResponse1)
+                //{
+                //    case "1":
+                //        break;
+                //    case "2":
+                //        break;
+                //    case "3":
+                //        break;
+                //    default:
+                //        break;
+            
+
+        }
+
+        private static string SignIn()
+        {
+            string userEmail = "";
+            string userPassword = "";
+            bool userSignedIn = false;
+            while (userSignedIn == false)
+            {
+                Console.Write("Enter User Email: ");
+                userEmail = Console.ReadLine();
+                Console.Write("Enter User Password: ");
+                userPassword = Console.ReadLine();
+                var user = _context.Users.Where(u => u.Email == userEmail).Where(u => u.Password == userPassword).SingleOrDefault();
+                if (user != null)
+                {
+                    List<string> returnValue = new List<string>();
+                    returnValue.Add(userEmail);
+                    returnValue.Add(userPassword);
+                    return "true";
+                }
+                else
+                {
+                    bool correctInput = false;
+                    while (correctInput == false)
+                    {
+                        Console.WriteLine("Invalid Email or Password. Re-enter (Y/N): ");
+                        string retry = Console.ReadLine().ToLower();
+                        if (retry == "y" || retry == "yes")
+                        {
+                            correctInput = true;
+                        }
+                        else if (retry == "n" || retry == "no")
+                        {
+                            return "false";
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please check your spelling and try again.");
+                        }
+                    }
+                }
+            }
+            return null;
+        }
     }
 }
+
+
+
