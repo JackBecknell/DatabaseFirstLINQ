@@ -141,7 +141,7 @@ namespace DatabaseFirstLINQ
             //    // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
             //    // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             //    // Then print the total of the shopping cart to the console.
-            var OdasTotal = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => u.User.Email == "oda@gmail.com").Select(u => u.Product.Price).Sum(); ;
+            var OdasTotal = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => u.User.Email == "oda@gmail.com").Select(u => u.Product.Price).Sum(); 
 
             Console.WriteLine("Oda is spending ${0}",OdasTotal);
     }
@@ -150,7 +150,13 @@ namespace DatabaseFirstLINQ
         {
             //    // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
             //    // Then print the user's email as well as the product's name, price, and quantity to the console.
-
+            var employeeId = _context.Roles.Include(u => u.UserRoles).Where(u => u.RoleName == "Employee").Select(u => u.Id).First();
+            var usersWithEmpId = _context.UserRoles.Include(u => u.User).Where(u => u.RoleId == employeeId).Select(u => u.User.Email);
+            var empShoppingCarts = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => usersWithEmpId.Contains(u.User.Email));
+            foreach(ShoppingCart cart in empShoppingCarts)
+            {
+                Console.WriteLine("Employee email: {0}, Product Name: {1}, Product Price: ${2}, Quantity: {3}", cart.User.Email, cart.Product.Name, cart.Product.Price, cart.Quantity);
+            }
         }
 
         //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
