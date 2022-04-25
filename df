@@ -1,0 +1,95 @@
+[33mcommit 3a7f63b751f60e597251a6292accde85983a803d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Mon Apr 25 12:02:05 2022 -0400
+
+    Created New Game Controller
+
+[33mcommit ac6302e5a01bf6fac9d0c7e9799ed238b002fc78[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Mon Apr 25 11:54:36 2022 -0400
+
+    we uncommented it
+
+[33mcommit 2f3fd032b97930e5d1f5f11900e26a03a62b64c9[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Mon Apr 25 11:49:37 2022 -0400
+
+    Made three queries; 1 for employeeId, 2 for users with employeeId, and 3 for all related shoppingCarts + then printed to the console all relevant info.
+
+[33mcommit fdbb67088be296a7502b0607de7ff0c632d958dc[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Mon Apr 25 11:02:17 2022 -0400
+
+    For Problem 9 we performed a linq query on ShoppingCarts and used .Include to access User and Product associated with user.Email of 'oda@gmail.com' then used select to access the price of each product and used .Sum() to total it.
+
+[33mcommit 25b20e8065549094b1047a5c1d9c1dd88fc8ebdb[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Mon Apr 25 10:39:38 2022 -0400
+
+    Created one query using .Include to access the User and Products associated with the user with an email of 'afton@gmail.com' + Created a foreach loop that prints the product name, price, quantity to the console.
+
+[33mcommit 6d5faee1d0bd86ab2dabb9b717a7205216ac7a4a[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 17:11:17 2022 -0400
+
+    declared two DateTime variables (one equal to 2016 one equal to 2018), declared an anonymous var equal to linq query where each users.Reg date is between previous two vars.
+
+[33mcommit 5b4d6e261fb59479f3691f0e2c12e2dc3595d6db[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 17:09:05 2022 -0400
+
+    declared a DateTime variable and set it equal to date of 2016,01,01 + declared anonymous var equal to linq query where RegistrationDate < DateTime var.
+
+[33mcommit f1543d891865a3e705a842196adcd73e49f08aff[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 17:07:43 2022 -0400
+
+    decalre anonymous var equal to a linq query Where object name Contains('s') + printed product.Name for each
+
+[33mcommit 64cf8aff7818614978749b6fa3eacde1388de211[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 17:06:22 2022 -0400
+
+    Set anonymous var equal to a Linq query where object price is > 150
+
+[33mcommit a4bc4dcab7892a2845489f2fcf58db2cf64025d3[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 17:04:59 2022 -0400
+
+    declared an anonymous data type 'users' set it equal to a query for users then console.WriteLined 'user.Email' for each user object stored in users.
+
+[33mcommit 885514de18f8d883cc48bdc5d354825903a0fe0e[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 17:02:43 2022 -0400
+
+    Created a variable and declared its value as 'int' + set it equal to a Linq Query utilizing .Count to retrieve nums of users
+
+[33mcommit 57ec52ca1faa5183bddfdfda35b08c00c8c45177[m
+Author: JackBecknell <52moosefit@gmail.com>
+Date:   Fri Apr 22 14:58:04 2022 -0400
+
+    Starter Code all set. Pushing so Stephanie can make a pull.
+
+[33mcommit 61e975fb24d734c81e41ed7a69c67f5eb1838005[m
+Author: David La Grange <davidnlagrange@hotmail.com>
+Date:   Thu Mar 11 14:17:04 2021 -0600
+
+    Removed .ToList On Users LINQ Query Problem One Problems Class
+
+[33mcommit 1c01f2c6fa6c0b5bf638d659b0cffe6df109be30[m
+Author: David La Grange <davidnlagrange@hotmail.com>
+Date:   Thu Mar 11 13:51:37 2021 -0600
+
+    Renamed InstallCommands File + Changed User Insert Queries to Specific Date
+
+[33mcommit fe7fa07debd40bec346c9315d1df704d4d64d23b[m
+Author: David La Grange <davidnlagrange@hotmail.com>
+Date:   Thu Mar 11 13:15:19 2021 -0600
+
+    Initilization of Project on GitHub
+
+[33mcommit 59459f049b4e5cab10445a0f502dcffb184b33b6[m
+Author: DevCodeCampInstructor <DevCodeCampInstructor@users.noreply.github.com>
+Date:   Thu Mar 11 11:15:11 2021 -0600
+
+    Initial commit
