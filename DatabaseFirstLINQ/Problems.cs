@@ -164,44 +164,7 @@ namespace DatabaseFirstLINQ
 
         //// <><> C Actions (Create) <><>
 
-        private void ProblemEleven()
-        {
-            // Create a new User object and add that user to the Users table using LINQ.
-            User newUser = new User()
-            {
-                Email = "david@gmail.com",
-                Password = "DavidsPass123"
-            };
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
-        }
-
-        private void ProblemTwelve()
-        {
-            // Create a new Product object and add that product to the Products table using LINQ.
-            Product newProduct = new Product()
-            {
-                Name = "Game Controller",
-                Description = "The biggest, the best, the shiniest, the awesomestest controller of ALL TIME!",
-                Price = 1000
-            };
-            _context.Products.Add(newProduct);
-            _context.SaveChanges();
-        }
-
-        private void ProblemThirteen()
-        {
-            // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
-            var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
-            var userId = _context.Users.Where(u => u.Email == "david@gmail.com").Select(u => u.Id).SingleOrDefault();
-            UserRole newUserRole = new UserRole()
-            {
-                UserId = userId,
-                RoleId = roleId
-            };
-            _context.UserRoles.Add(newUserRole);
-            _context.SaveChanges();
-        }
+      
 
         //private void ProblemFourteen()
         //{
