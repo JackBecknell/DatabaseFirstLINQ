@@ -33,8 +33,8 @@ namespace DatabaseFirstLINQ
             ////ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
-            ProblemEighteen();
-            //ProblemNineteen();
+            //ProblemEighteen();
+            ProblemNineteen();
             //ProblemTwenty();
         }
 
@@ -265,17 +265,17 @@ namespace DatabaseFirstLINQ
             _context.SaveChanges();
         }
 
-        //private void ProblemNineteen()
-        //{
-        //    // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
-        //    // HINT: Loop
-        //    var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == "oda@gmail.com");
-        //    foreach (ShoppingCart userProductRelationship in shoppingCartProducts)
-        //    {
-        //        _context.ShoppingCarts.Remove(userProductRelationship);
-        //    }
-        //    _context.SaveChanges();
-        //}
+        private void ProblemNineteen()
+        {
+            // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
+            // HINT: Loop
+            var shoppingCartProducts = _context.ShoppingCarts.Where(sc => sc.User.Email == "oda@gmail.com");
+            foreach (ShoppingCart userProductRelationship in shoppingCartProducts)
+            {
+                _context.ShoppingCarts.Remove(userProductRelationship);
+            }
+            _context.SaveChanges();
+        }
 
         //private void ProblemTwenty()
         //{
