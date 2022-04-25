@@ -23,8 +23,8 @@ namespace DatabaseFirstLINQ
             ProblemSix();
             ProblemSeven();
             ProblemEight();
-            //ProblemNine();
-            //ProblemTen();
+            ProblemNine();
+            ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -134,23 +134,24 @@ namespace DatabaseFirstLINQ
             {
                 Console.WriteLine($"Product: {item.Product.Name} Price: ${item.Product.Price} Quantity: {item.Quantity}");
             }
-            
         }
 
-        //private void ProblemNine()
-        //{
-        //    // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
-        //    // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
-        //    // Then print the total of the shopping cart to the console.
+        private void ProblemNine()
+        {
+            //    // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
+            //    // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
+            //    // Then print the total of the shopping cart to the console.
+            var OdasTotal = _context.ShoppingCarts.Include(u => u.Product).Include(u => u.User).Where(u => u.User.Email == "oda@gmail.com").Select(u => u.Product.Price).Sum(); ;
 
-        //}
+            Console.WriteLine("Oda is spending ${0}",OdasTotal);
+    }
 
-        //private void ProblemTen()
-        //{
-        //    // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
-        //    // Then print the user's email as well as the product's name, price, and quantity to the console.
+        private void ProblemTen()
+        {
+            //    // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
+            //    // Then print the user's email as well as the product's name, price, and quantity to the console.
 
-        //}
+        }
 
         //// <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
 
